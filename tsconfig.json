@@ -35,6 +35,9 @@
       "@images/*": [
         "./resources/images/*"
       ],
+      "@figma/*": [
+        "./resources/figmaDesign/*"
+      ],
       "@styles/*": [
         "./resources/styles/*"
       ],

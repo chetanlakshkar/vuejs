@@ -2,7 +2,7 @@
 const user = {
   name: 'John Doe',
   role: 'Admin',
-  avatar: 'https://i.pravatar.cc/80?img=12',
+  avatar: './Active.svg',
 }
 </script>
 

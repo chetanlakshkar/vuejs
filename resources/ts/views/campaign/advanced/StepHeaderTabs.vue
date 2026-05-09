@@ -1,37 +1,33 @@
 <script setup lang="ts">
-type StepKey = 'audience' | 'sender'
+type StepKey = "audience" | "sender";
 
 const props = defineProps<{
-  modelValue: StepKey
-  audienceComplete: boolean
-}>()
+  modelValue: StepKey;
+  audienceComplete: boolean;
+}>();
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: StepKey): void
-}>()
+  (e: "update:modelValue", value: StepKey): void;
+}>();
 
 const select = (k: StepKey) => {
-  if (k === 'sender' && !props.audienceComplete)
-    return
-  emit('update:modelValue', k)
-}
+  if (k === "sender" && !props.audienceComplete) return;
+  emit("update:modelValue", k);
+};
 
 const steps: { key: StepKey; label: string; icon: string }[] = [
-  { key: 'audience', label: 'Define Target Audience', icon: 'tabler-list-check' },
-  { key: 'sender', label: 'Sender Profiles', icon: 'tabler-user-circle' },
-]
+  {
+    key: "audience",
+    label: "Define Target Audience",
+    icon: "tabler-list-check",
+  },
+  { key: "sender", label: "Sender Profiles", icon: "tabler-user-circle" },
+];
 </script>
 
 <template>
-  <VCard
-    class="pa-3 d-flex align-center ga-2"
-    rounded="lg"
-    elevation="0"
-  >
-    <template
-      v-for="(step, idx) in steps"
-      :key="step.key"
-    >
+  <VCard class="pa-3 d-flex align-center ga-2" rounded="lg" elevation="0">
+    <template v-for="(step, idx) in steps" :key="step.key">
       <button
         type="button"
         class="step-pill flex-grow-1"
@@ -45,10 +41,7 @@ const steps: { key: StepKey; label: string; icon: string }[] = [
           class="step-pill__icon"
           :class="{ 'step-pill__icon--active': modelValue === step.key }"
         >
-          <VIcon
-            :icon="step.icon"
-            size="22"
-          />
+          <VIcon :icon="step.icon" size="22" />
         </span>
         <span class="step-pill__label">{{ step.label }}</span>
       </button>

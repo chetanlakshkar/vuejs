@@ -10,7 +10,7 @@ const user = {
   name: 'John Doe',
   role: 'Admin',
   email: 'johndoe@gmail.com',
-  avatar: 'https://i.pravatar.cc/80?img=12',
+  avatar: './Active.svg',
 }
 </script>
 

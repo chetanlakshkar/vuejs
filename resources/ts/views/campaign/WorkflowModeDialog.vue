@@ -1,76 +1,68 @@
 <script setup lang="ts">
-const props = defineProps<{ modelValue: boolean }>()
+const props = defineProps<{ modelValue: boolean }>();
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-  (e: 'select', mode: 'advanced' | 'standard'): void
-}>()
+  (e: "update:modelValue", value: boolean): void;
+  (e: "select", mode: "advanced" | "standard"): void;
+}>();
 
 const isOpen = computed({
   get: () => props.modelValue,
-  set: v => emit('update:modelValue', v),
-})
+  set: (v) => emit("update:modelValue", v),
+});
 
-const selected = ref<'advanced' | 'standard'>('advanced')
+const selected = ref<"advanced" | "standard">("advanced");
 
-const close = () => emit('update:modelValue', false)
+const close = () => emit("update:modelValue", false);
 
-const handleNext = () => emit('select', selected.value)
+const handleNext = () => emit("select", selected.value);
 
 const modes = [
   {
-    value: 'advanced' as const,
-    title: 'Advanced Workflow',
-    subtitle: 'Best for high-volume outreach',
-    bullets: ['Conditional logic', 'Multiple paths', 'More control'],
+    value: "advanced" as const,
+    title: "Advanced Workflow",
+    subtitle: "Best for high-volume outreach",
+    bullets: ["Conditional logic", "Multiple paths", "More control"],
     recommended: true,
   },
   {
-    value: 'standard' as const,
-    title: 'Standard Workflow',
-    subtitle: 'Best for beginners',
-    bullets: ['Linear steps', 'No conditions', 'Easy Setup'],
+    value: "standard" as const,
+    title: "Standard Workflow",
+    subtitle: "Best for beginners",
+    bullets: ["Linear steps", "No conditions", "Easy Setup"],
     recommended: false,
   },
-]
+];
 </script>
 
 <template>
-  <VDialog
-    v-model="isOpen"
-    max-width="640"
-    scrollable
-  >
+  <VDialog v-model="isOpen" max-width="640" scrollable>
     <VCard rounded="lg">
       <div class="d-flex align-start pa-6 pb-4 ga-3">
         <div class="flex-grow-1">
-          <div class="text-h5 font-weight-semibold">
-            Select Workflow Mode
-          </div>
+          <div class="text-h5 font-weight-semibold">Select Workflow Mode</div>
           <div class="text-body-2 text-medium-emphasis mt-1">
             Choose how you want your campaign to behave
           </div>
         </div>
-        <IconBtn
-          variant="text"
-          @click="close"
-        >
-          <VIcon
-            icon="tabler-x"
-            size="20"
-          />
+        <IconBtn variant="text" @click="close">
+          <VIcon icon="tabler-x" size="20" />
         </IconBtn>
       </div>
 
       <VDivider />
 
       <VCardText class="pa-6 d-flex flex-column ga-4">
-        <button
+        <div
           v-for="mode in modes"
           :key="mode.value"
-          type="button"
+          role="radio"
+          tabindex="0"
+          :aria-checked="selected === mode.value"
           class="mode-card"
           :class="{ 'mode-card--active': selected === mode.value }"
           @click="selected = mode.value"
+          @keydown.space.prevent="selected = mode.value"
+          @keydown.enter.prevent="selected = mode.value"
         >
           <div class="d-flex align-start ga-3 flex-grow-1">
             <VRadio
@@ -86,7 +78,9 @@ const modes = [
             />
             <div class="flex-grow-1">
               <div class="d-flex align-center ga-3 flex-wrap">
-                <span class="text-subtitle-1 font-weight-semibold">{{ mode.title }}</span>
+                <span class="text-subtitle-1 font-weight-semibold">{{
+                  mode.title
+                }}</span>
                 <VChip
                   v-if="mode.recommended"
                   size="x-small"
@@ -112,34 +106,30 @@ const modes = [
               </div>
             </div>
           </div>
-          <div class="mode-card__art">
-            <VIcon
-              :icon="mode.value === 'advanced' ? 'tabler-layout-grid' : 'tabler-list-details'"
-              size="40"
-              color="primary"
-              class="opacity-60"
+          <div>
+            <img
+              v-if="mode.value === 'advanced'"
+              src="/Frame1.svg"
+              alt="Advanced Workflow"
+              class="workflow-image"
+            />
+
+            <img
+              v-else
+              src="/Frame2.svg"
+              alt="Standard Workflow"
+              class="workflow-image"
             />
           </div>
-        </button>
+        </div>
       </VCardText>
 
       <VDivider />
 
       <VCardActions class="pa-6">
         <VSpacer />
-        <VBtn
-          variant="tonal"
-          color="default"
-          @click="close"
-        >
-          Close
-        </VBtn>
-        <VBtn
-          color="primary"
-          @click="handleNext"
-        >
-          Next
-        </VBtn>
+        <VBtn variant="tonal" color="default" @click="close"> Close </VBtn>
+        <VBtn color="primary" @click="handleNext"> Next </VBtn>
       </VCardActions>
     </VCard>
   </VDialog>
@@ -156,10 +146,18 @@ const modes = [
   border-radius: 12px;
   background-color: rgb(var(--v-theme-surface));
   cursor: pointer;
-  transition: border-color 0.18s ease, background-color 0.18s ease;
+  user-select: none;
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease;
 
   &:hover {
     border-color: rgba(var(--v-theme-primary), 0.5);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgb(var(--v-theme-primary));
+    outline-offset: 2px;
   }
 
   &--active {
@@ -176,13 +174,14 @@ const modes = [
 
   &__art {
     flex-shrink: 0;
-    inline-size: 64px;
-    block-size: 48px;
+    inline-size: 110px;
+    block-size: 78px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(var(--v-theme-primary), 0.08);
-    border-radius: 8px;
+    background-color: rgba(var(--v-theme-primary), 0.05);
+    border-radius: 10px;
+    padding: 5px;
   }
 }
 
