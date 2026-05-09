@@ -3,7 +3,7 @@ import type { VerticalNavItems } from '@layouts/types'
 export default [
   {
     title: 'Campaign',
-    icon: { icon: 'tabler-speakerphone' },
+    icon: { icon: 'custom-marketing' },
     to: { name: 'campaign' },
   },
 ] as VerticalNavItems

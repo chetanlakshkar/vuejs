@@ -8,7 +8,7 @@ const props = defineProps<{
 const steps: { key: StepKey; title: string; icon: string }[] = [
   { key: 'leads', title: 'Leads List', icon: 'tabler-list-check' },
   { key: 'audience', title: 'Target Audience', icon: 'tabler-send' },
-  { key: 'campaign', title: 'Campaign', icon: 'tabler-speakerphone' },
+  { key: 'campaign', title: 'Campaign', icon: 'custom-marketing' },
 ]
 
 const stateOf = (key: StepKey) => {

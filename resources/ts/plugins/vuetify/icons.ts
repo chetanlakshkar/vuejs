@@ -5,6 +5,10 @@ import checkboxIndeterminate from '@images/svg/checkbox-indeterminate.svg'
 import checkboxUnchecked from '@images/svg/checkbox-unchecked.svg'
 import radioChecked from '@images/svg/radio-checked.svg'
 import radioUnchecked from '@images/svg/radio-unchecked.svg'
+import marketingIcon from '@images/svg/marketing.svg'
+import linkedinIcon from '@images/svg/linkedin.svg'
+import calendarIcon from '@images/svg/calendar.svg'
+import userListIcon from '@images/svg/user-list.svg'
 
 const customIcons: Record<string, unknown> = {
   'mdi-checkbox-blank-outline': checkboxUnchecked,
@@ -12,6 +16,10 @@ const customIcons: Record<string, unknown> = {
   'mdi-minus-box': checkboxIndeterminate,
   'mdi-radiobox-marked': radioChecked,
   'mdi-radiobox-blank': radioUnchecked,
+  'custom-marketing': marketingIcon,
+  'custom-linkedin': linkedinIcon,
+  'custom-calendar': calendarIcon,
+  'custom-user-list': userListIcon,
 }
 
 const aliases: Partial<IconAliases> = {

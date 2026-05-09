@@ -16,26 +16,26 @@ const methods: {
   {
     value: 'linkedin',
     title: 'LinkedIn\nSearch',
-    icon: 'tabler-brand-linkedin',
+    icon: 'custom-linkedin',
     description: '(Basic, Sales Nav, Post, Group or Event URL)',
   },
   {
     value: 'csv',
     title: 'Upload\nCSV File',
-    icon: 'tabler-calendar',
+    icon: 'custom-calendar',
     description: 'Upload LinkedIn profiles via CSV.',
     htmlDesc: 'Upload LinkedIn profiles via CSV. <a href="#" class="text-primary text-decoration-none">Download Sample</a>',
   },
   {
     value: 'lookalike',
     title: 'Lookalike\nAudience',
-    icon: 'tabler-users-group',
+    icon: 'custom-user-list',
     description: 'Use Lead Finder to find audience.',
   },
   {
     value: 'webhook',
     title: 'Inbound\nWebhook',
-    icon: 'tabler-brand-linkedin',
+    icon: 'custom-linkedin',
     description: 'Sync leads from zapier, n8n make in real time',
   },
 ]
